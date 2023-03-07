@@ -14,14 +14,14 @@
         <div class="col-md-4">
             <div class="card border-0">
                 <div class="card-body">
-                    <form action="" method="post">
+                    <form action="{{route('kategori.update', $category->id)}}" method="post">
                         @csrf
-                        @method('PUT')
+                        @method('PATCH')
                         <div class="form-group">
-                            <label for="">Nama Kategori</label>
-                            <input type="text" name="nama" id="" class="form-control">
+                            <label for="nama">Nama Kategori</label>
+                            <input type="text" name="nama" id="nama" value="{{old('nama', $category->nama)}}" class="form-control">
                         </div>
-                        <button class="btn btn-outline-info">Perbarui Kategori</button>
+                             <button class="btn btn-outline-warning btn-sm">Perbarui Category</button>
                     </form>
                 </div>
             </div>
@@ -34,23 +34,12 @@
                             <tr>
                                 <th>Kode Kategori</th>
                                 <th>Nama Kategori</th>
-                                <th>Options</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>KTG/20220403/001</td>
-                                <td>Makanan Kemasan</td>
-                                <td>
-                                    <form action="" method="post">
-                                        @csrf
-                                        <a href="{{route('kategori')}}"  class="btn btn-outline-warning btn-sm">Kateogry</a>
-                                        <button type="submit" class="btn btn-outline-dan)}}" class="btn btn-outline-warning btn-sm">Edit
-                                            Kategori</a>
-                                        <button type="submit" class="btn btn-outline-danger btn-sm">Hapus
-                                            Kategori</button>
-                                    </form>
-                                </td>
+                                <td>{{$category->no_reg}}</td>
+                                <td>{{$category->nama}}</td>
                             </tr>
                         </tbody>
                     </table>

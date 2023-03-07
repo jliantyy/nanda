@@ -29,4 +29,16 @@ class CategoryController extends Controller
         return view('kategori.edit', compact('category'));
         // return view('kategori.edit');
     }
+    public function update(Request $request, Category $category)
+    {
+        $category->update($request->all());
+        return redirect()->route('kategori');
+    }
+    public function destroy(Request $request, $id)
+    {
+        $category = Category::findOrFail($id);
+        $category->delete($request->all());
+
+        return redirect()->route('kategori');
+    }
 }
