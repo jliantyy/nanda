@@ -10,13 +10,20 @@ class Permintaan extends Model
     use AutoNumberTrait;
 
     protected $table = 'permintaans';
+    protected $fillable = [
+        'barang_id',
+        'jumlah',
+        'total',
+        'status'
+    ];
     protected $guarded = [
+        'id'
     ];
 
     public function getAutoNumberOptions()
     {
         return [
-            'koe_permintaan' => [
+            'kode_permintaan' => [
                 'format' => function () {
                     return 'REQ/' . date('Ymd') . '/?';
                 },

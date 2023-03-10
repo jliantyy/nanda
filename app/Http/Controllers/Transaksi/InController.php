@@ -13,4 +13,11 @@ class InController extends Controller
         $permintaans = Permintaan::with('barang')->paginate(5);
         return view('transaksi.in.index', compact('permintaans'));
     }
+    public function destroy(Request $request, $id)
+    {
+        $permintaans = Permintaan::findOrFail($id);
+        $permintaans->delete($request->all());
+
+        return redirect()->route('transaksi.in');
+    }
 }

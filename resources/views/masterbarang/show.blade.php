@@ -29,10 +29,10 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>BRG/20220403/001</td>
-                                    <td>LCD 14 inch</td>
-                                    <td>Samsung</td>
-                                    <td>Unit</td>
+                                    <td>{{$barang->no_reg}}</td>
+                                    <td>{{$barang->nama}}</td>
+                                    <td>{{$brand->nama}}</td>
+                                    <td>{{$satuan->nama}}</td>
                                     <td>Rp. 1.500.000</td>
                                 </tr>
                             </tbody>

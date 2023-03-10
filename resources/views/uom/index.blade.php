@@ -37,8 +37,9 @@
                                     <td>
                                         <form action="" method="post">
                                             @csrf
-                                            <a href="{{route('satuan.edit')}}" class="btn btn-outline-warning btn-sm">Edit Satuan</a>
-                                            <button class="btn btn-outline-danger btn-sm">Hapus Satuan</button>
+                                            @method('GET')
+                                            <a href="{{route('uom.edit',  $satuan->id)}}" class="btn btn-outline-warning btn-sm">Edit Satuan</a>
+                                            <a href="{{route('satuan.destroy', $satuan->id)}}" class="btn btn-outline-danger btn-sm">Hapus Satuan</a>
                                         </form>
                                     </td>
                                 </tr>

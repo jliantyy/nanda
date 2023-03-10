@@ -16,7 +16,7 @@ class CreatePermintaansTable extends Migration
         Schema::create('permintaans', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('barang_id');
-            $table->string('koe_permintaan');
+            $table->string('kode_permintaan');
             $table->string('jumlah');
             $table->string('total');
             $table->string('status');

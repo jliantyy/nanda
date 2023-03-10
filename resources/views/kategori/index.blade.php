@@ -73,10 +73,13 @@
                                 </tr>
                             </thead>
                             <tbody>
+                            @forelse ($categorys as $category)
                                 <tr>
                                     <td>{{$category->no_reg}}</td>
                                     <td>{{$category->nama}}</td>
                                 </tr>
+                                @empty
+                                @endforelse
                             </tbody>
                         </table>
                     </div>

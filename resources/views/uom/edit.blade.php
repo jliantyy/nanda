@@ -9,11 +9,12 @@
     </div>
     <div class="row">
         <div class="col-md-4">
-            <form action="" method="post">
+            <form action="{{route('satuan.update', $satuan->id)}}" method="post">
                 @csrf
+                @method('PATCH')
                 <div class="form-group">
-                    <label for="">Nama Satuan</label>
-                    <input type="text" name="" id="" class="form-control">
+                    <label for="nama">Nama Satuan</label>
+                    <input type="nama" name="nama" id="" value="{{old('nama', $satuan->nama)}}" class="form-control">
                 </div>
                 <button class="btn btn-outline-info">Simpan Satuan</button>
             </form>
@@ -26,21 +27,12 @@
                             <tr>
                                 <th>Kode Satuan</th>
                                 <th>Nama</th>
-                                <th>Options</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>ST/20220403/001</td>
-                                <td>Botol</td>
-                                <td>
-                                    <form action="" method="post">
-                                        @csrf
-                                        <a href="{{route('satuan.edit')}}" class="btn btn-outline-warning btn-sm">Edit
-                                            Satuan</a>
-                                        <button class="btn btn-outline-danger btn-sm">Hapus Satuan</button>
-                                    </form>
-                                </td>
+                                <td>{{$satuan->no_reg}}</td>
+                                <td>{{$satuan->nama}}</td>
                             </tr>
                         </tbody>
                     </table>
