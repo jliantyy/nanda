@@ -2,6 +2,9 @@
 
 namespace App;
 
+use App\Brand;
+use App\Katagori;
+use App\Satuan;
 use Alfa6661\AutoNumber\AutoNumberTrait;
 use Illuminate\Database\Eloquent\Model;
 
@@ -24,9 +27,9 @@ class Barang extends Model
             ]
         ];
     }
-    public function category()
+    public function katagori()
     {
-       return $this->belongsTo(Category::class);
+       return $this->belongsTo(Katagori::class);
     }
     public function satuan()
     {
@@ -36,5 +39,4 @@ class Barang extends Model
     {
        return $this->belongsTo(Brand::class);
     }
-
 }

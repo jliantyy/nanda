@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Permission;
+use App\Brand;
 use Illuminate\Http\Request;
 
-class PermissionController extends Controller
+class BrandController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,8 @@ class PermissionController extends Controller
      */
     public function index()
     {
-        //
+        $brands = Brand::paginate(5);
+        return view('brand.index', compact('brands'));
     }
 
     /**
@@ -24,7 +25,11 @@ class PermissionController extends Controller
      */
     public function create()
     {
-        //
+        $brand = brand::create(
+            $request->all()
+        );
+
+        return redirect()->back();
     }
 
     /**
@@ -35,16 +40,21 @@ class PermissionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $katagoris = Brand::create(
+            $request->all()
+        );
+
+        return redirect()->back();
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Permission  $permission
+     * @param  \App\Brand  $brand
      * @return \Illuminate\Http\Response
      */
-    public function show(Permission $permission)
+    public function show(Brand $brand)
     {
         //
     }
@@ -52,34 +62,40 @@ class PermissionController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Permission  $permission
+     * @param  \App\Brand  $brand
      * @return \Illuminate\Http\Response
      */
-    public function edit(Permission $permission)
+    public function edit($id)
     {
-        //
-    }
+        $brand = Brand::findOrFail($id);
 
+        return view('brand.edit', compact('brand'));
+    }
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Permission  $permission
+     * @param  \App\Brand  $brand
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Permission $permission)
+    public function update(Request $request, Brand $brand)
     {
-        //
+        $brand->update($request->all());
+
+        return redirect()->route('brand');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Permission  $permission
+     * @param  \App\Brand  $brand
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Permission $permission)
+    public function destroy(Request $request, $id)
     {
-        //
+        $brand = Brand::findOrFail($id);
+        $brand->delete($request->all());
+
+        return redirect()->route('brand');
     }
 }

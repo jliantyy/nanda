@@ -1,9 +1,8 @@
 <?php
 
-use Illuminate\Database\Seeder;
-use App\User;
 use App\Role;
 use App\Permission;
+use Illuminate\Database\Seeder;
 
 
 class AclSeed extends Seeder
@@ -17,14 +16,16 @@ class AclSeed extends Seeder
     {
         app()['cache']->forget('spatie.permission.cache');
 
-        $permissions = Permission::defaultPermissions();
-        foreach ($permissions as $perms) {
+        $permissions = new Permission();
+
+        foreach ($permissions->defaultPermissions() as $perms) {
             Permission::firstOrCreate(['name' => $perms]);
         }
+
         $this->command->info('Default Permissions added.');
 
-        $roles = Role::defaultRoles();
-        foreach ($roles as $role) {
+        $roles = new Role();
+        foreach ($roles->defaultRoles() as $role) {
             $role = Role::firstOrCreate(['name' => $role]);
 
             if ($role->name == 'ketua') {
@@ -33,6 +34,5 @@ class AclSeed extends Seeder
         }
 
         $this->command->info('Default Roles added.');
-
     }
 }

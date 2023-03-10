@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Permission;
+use App\Satuan;
 use Illuminate\Http\Request;
 
-class PermissionController extends Controller
+class SatuanController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,8 @@ class PermissionController extends Controller
      */
     public function index()
     {
-        //
+        $satuans = Satuan::paginate(5);
+        return view('satuan.index', compact('satuans'));
     }
 
     /**
@@ -35,16 +36,20 @@ class PermissionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $katagoris = Satuan::create(
+            $request->all()
+        );
+
+        return redirect()->back();
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Permission  $permission
+     * @param  \App\Satuan  $satuan
      * @return \Illuminate\Http\Response
      */
-    public function show(Permission $permission)
+    public function show(Satuan $satuan)
     {
         //
     }
@@ -52,34 +57,41 @@ class PermissionController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Permission  $permission
+     * @param  \App\Satuan  $satuan
      * @return \Illuminate\Http\Response
      */
-    public function edit(Permission $permission)
+    public function edit($id)
     {
-        //
+        $satuan = Satuan::findOrFail($id);
+
+        return view('satuan.edit', compact('satuan'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Permission  $permission
+     * @param  \App\Satuan  $satuan
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Permission $permission)
+    public function update(Request $request, Satuan $satuan)
     {
-        //
+        $satuan->update($request->all());
+
+        return redirect()->route('satuan');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Permission  $permission
+     * @param  \App\Satuan  $satuan
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Permission $permission)
+    public function destroy(Request $request, $id)
     {
-        //
+        $satuan = Satuan::findOrFail($id);
+        $satuan->delete($request->all());
+
+        return redirect()->route('satuan');
     }
 }

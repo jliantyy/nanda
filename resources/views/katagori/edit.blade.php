@@ -4,7 +4,7 @@
         <ol class="breadcrumb bg-transparent d-flex align-items-center">
             <li class="breadcrumb-item" aria-current="page">Master Data</li>
             <li class="breadcrumb-item active" aria-current="page">
-                Edit Brand
+                Edit Kategori
             </li>
         </ol>
     </nav>
@@ -13,7 +13,7 @@
             <div class="card border-0">
                 <div class="card-body">
                     <form
-                        action="{{route('brand.update', $brand->id)}}"
+                        action="{{route('katagori.update', $katagori->id)}}"
                         method="post"
                     >
                         @csrf @method('PATCH')
@@ -23,12 +23,12 @@
                                 type="text"
                                 name="nama"
                                 id="nama"
-                                value="{{old('nama', $brand->nama)}}"
+                                value="{{old('nama', $katagori->nama)}}"
                                 class="form-control"
                             />
                         </div>
                         <button class="btn btn-outline-warning btn-sm">
-                            Perbarui Brand
+                            Perbarui Category
                         </button>
                     </form>
                 </div>
@@ -40,14 +40,14 @@
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th>Kode Brand</th>
-                                <th>Nama Brand</th>
+                                <th>Kode Kategori</th>
+                                <th>Nama Kategori</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>{{$brand->no_reg}}</td>
-                                <td>{{$brand->nama}}</td>
+                                <td>{{$katagori->no_reg}}</td>
+                                <td>{{$katagori->nama}}</td>
                             </tr>
                         </tbody>
                     </table>

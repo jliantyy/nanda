@@ -2,17 +2,17 @@
 <div class="container">
     <div class="d-flex">
         <p style="margin-left: 2px; font-weight: bold">Master Data</p>
-        <p style="margin-left: 5px">/ Edit Brand</p>
+        <p style="margin-left: 5px">/ Satuan</p>
     </div>
     <div class="row">
         @role('ketua')
         <div class="col-md-5">
             <div class="card">
                 <div class="card-body">
-                    <form action="{{ route('brand.store') }}" method="post">
+                    <form action="{{ route('satuan.store') }}" method="post">
                         @csrf
                         <div class="form-group">
-                            <label for="nama-brand">Nama Brand</label>
+                            <label for="nama-brand">Nama Satuan</label>
                             <input
                                 type="text"
                                 class="form-control"
@@ -25,7 +25,7 @@
                             type="submit"
                             class="btn btn-outline-primary mt-3"
                         >
-                            Simpan Brand
+                            Simpan Satuan
                         </button>
                     </form>
                 </div>
@@ -36,29 +36,29 @@
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th scope="col">Kode Brand</th>
-                            <th scope="col">Nama Brand</th>
+                            <th scope="col">Kode Satuan</th>
+                            <th scope="col">Nama</th>
                             <th scope="col">Options</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse ($brands as $brand)
+                        @forelse ($satuans as $satuan)
                         <tr>
-                            <td>{{$brand->no_reg}}</td>
-                            <td>{{$brand->nama}}</td>
+                            <td>{{$satuan->no_reg}}</td>
+                            <td>{{$satuan->nama}}</td>
                             <td>
                                 <form action="" method="post">
                                     @csrf
                                     <a
-                                        href="{{route('brand.edit', $brand->id )}}"
+                                        href="{{route('satuan.edit', $satuan->id )}}"
                                         class="btn btn-outline-warning btn-sm"
-                                        >Edit Brand</a
+                                        >Edit Satuan</a
                                     >
                                     <a
-                                        href="./brand/destroy/{{ $brand->id }}"
+                                        href="./satuan/destroy/{{ $satuan->id }}"
                                         class="btn btn-outline-danger btn-sm"
                                         onclick="return confirm('Apakah Anda Yakin Menghapus Data?');"
-                                        >Hapus Brand</a
+                                        >Hapus UOM</a
                                     >
                                 </form>
                             </td>
@@ -75,8 +75,8 @@
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th>Kode Brand</th>
-                                <th>Nama Brand</th>
+                                <th>Kode Satuan</th>
+                                <th>Nama Satuan</th>
                             </tr>
                         </thead>
                         <tbody>

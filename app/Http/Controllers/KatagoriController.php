@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Permission;
+use App\Katagori;
 use Illuminate\Http\Request;
 
-class PermissionController extends Controller
+class KatagoriController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,8 @@ class PermissionController extends Controller
      */
     public function index()
     {
-        //
+        $katagoris = Katagori::paginate(5);
+        return view('katagori.index', compact('katagoris'));
     }
 
     /**
@@ -24,7 +25,12 @@ class PermissionController extends Controller
      */
     public function create()
     {
-        //
+
+        $katagori = Katagori::create(
+            $request->all()
+        );
+
+        return redirect()->back();
     }
 
     /**
@@ -35,16 +41,21 @@ class PermissionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $katagori = Katagori::create(
+            $request->all()
+        );
+
+        return redirect()->back();
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Permission  $permission
+     * @param  \App\Katagori  $katagori
      * @return \Illuminate\Http\Response
      */
-    public function show(Permission $permission)
+    public function show(Katagori $katagori)
     {
         //
     }
@@ -52,34 +63,41 @@ class PermissionController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Permission  $permission
+     * @param  \App\Katagori  $katagori
      * @return \Illuminate\Http\Response
      */
-    public function edit(Permission $permission)
+    public function edit($id)
     {
-        //
+        $katagori = Katagori::findOrFail($id);
+
+        return view('katagori.edit', compact('katagori'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Permission  $permission
+     * @param  \App\Katagori  $katagori
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Permission $permission)
+    public function update(Request $request, Katagori $katagori)
     {
-        //
+        $katagori->update($request->all());
+
+        return redirect()->route('katagori');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Permission  $permission
+     * @param  \App\Katagori  $katagori
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Permission $permission)
+    public function destroy(Request $request, $id)
     {
-        //
+        $katagori = Katagori::findOrFail($id);
+        $katagori->delete($request->all());
+
+        return redirect()->route('katagori');
     }
 }

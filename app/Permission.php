@@ -6,10 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Permission extends \Spatie\Permission\Models\Permission
 {
-    public static function defaultPermissions()
+    public function defaultPermissions()
     {
         return [
-            'create_user',
+            'create',
             'edit_user',
             'update_user',
         ];

@@ -2,19 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Permission;
+use App\Rak;
 use Illuminate\Http\Request;
+use App\Barang;
 
-class PermissionController extends Controller
+class RakController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        //
+        $barangs = Barang::Where('katagori_id', $id)->with('brand', 'satuan')->get();
+
+        return view('barang.databarang.index', compact('barangs'));
     }
 
     /**
@@ -41,10 +44,10 @@ class PermissionController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Permission  $permission
+     * @param  \App\Rak  $rak
      * @return \Illuminate\Http\Response
      */
-    public function show(Permission $permission)
+    public function show(Rak $rak)
     {
         //
     }
@@ -52,10 +55,10 @@ class PermissionController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Permission  $permission
+     * @param  \App\Rak  $rak
      * @return \Illuminate\Http\Response
      */
-    public function edit(Permission $permission)
+    public function edit(Rak $rak)
     {
         //
     }
@@ -64,10 +67,10 @@ class PermissionController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Permission  $permission
+     * @param  \App\Rak  $rak
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Permission $permission)
+    public function update(Request $request, Rak $rak)
     {
         //
     }
@@ -75,10 +78,10 @@ class PermissionController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Permission  $permission
+     * @param  \App\Rak  $rak
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Permission $permission)
+    public function destroy(Rak $rak)
     {
         //
     }

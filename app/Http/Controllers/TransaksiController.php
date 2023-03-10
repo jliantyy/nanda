@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Permission;
+use App\Transaksi;
 use Illuminate\Http\Request;
 
-class PermissionController extends Controller
+class TransaksiController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class PermissionController extends Controller
      */
     public function index()
     {
-        //
+        return view('transaksi.index');
     }
 
     /**
@@ -41,10 +41,10 @@ class PermissionController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Permission  $permission
+     * @param  \App\Transaksi  $transaksi
      * @return \Illuminate\Http\Response
      */
-    public function show(Permission $permission)
+    public function show(Transaksi $transaksi)
     {
         //
     }
@@ -52,10 +52,10 @@ class PermissionController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Permission  $permission
+     * @param  \App\Transaksi  $transaksi
      * @return \Illuminate\Http\Response
      */
-    public function edit(Permission $permission)
+    public function edit(Transaksi $transaksi)
     {
         //
     }
@@ -64,10 +64,10 @@ class PermissionController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Permission  $permission
+     * @param  \App\Transaksi  $transaksi
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Permission $permission)
+    public function update(Request $request, Transaksi $transaksi)
     {
         //
     }
@@ -75,11 +75,16 @@ class PermissionController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Permission  $permission
+     * @param  \App\Transaksi  $transaksi
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Permission $permission)
+    public function destroy(Transaksi $transaksi)
     {
         //
+    }
+
+    public function masuk()
+    {
+        return view('transaksi.masuk');
     }
 }

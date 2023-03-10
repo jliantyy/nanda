@@ -2,17 +2,17 @@
 <div class="container">
     <div class="d-flex">
         <p style="margin-left: 2px; font-weight: bold">Master Data</p>
-        <p style="margin-left: 5px">/ Edit Brand</p>
+        <p style="margin-left: 5px">/ Edit Katagori</p>
     </div>
     <div class="row">
         @role('ketua')
         <div class="col-md-5">
             <div class="card">
                 <div class="card-body">
-                    <form action="{{ route('brand.store') }}" method="post">
+                    <form action="{{ route('katagori.store') }}" method="post">
                         @csrf
                         <div class="form-group">
-                            <label for="nama-brand">Nama Brand</label>
+                            <label for="nama-brand">Nama Katagori</label>
                             <input
                                 type="text"
                                 class="form-control"
@@ -25,7 +25,7 @@
                             type="submit"
                             class="btn btn-outline-primary mt-3"
                         >
-                            Simpan Brand
+                            Perbarui Katagori
                         </button>
                     </form>
                 </div>
@@ -36,29 +36,29 @@
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th scope="col">Kode Brand</th>
-                            <th scope="col">Nama Brand</th>
+                            <th scope="col">Kode Katagori</th>
+                            <th scope="col">Nama Katagori</th>
                             <th scope="col">Options</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse ($brands as $brand)
+                        @forelse ($katagoris as $katagori)
                         <tr>
-                            <td>{{$brand->no_reg}}</td>
-                            <td>{{$brand->nama}}</td>
+                            <td>{{$katagori->no_reg}}</td>
+                            <td>{{$katagori->nama}}</td>
                             <td>
                                 <form action="" method="post">
-                                    @csrf
+                                    @csrf @method('GET')
                                     <a
-                                        href="{{route('brand.edit', $brand->id )}}"
+                                        href="{{route('katagori.edit', $katagori->id )}}"
                                         class="btn btn-outline-warning btn-sm"
-                                        >Edit Brand</a
+                                        >Edit Katagori</a
                                     >
                                     <a
-                                        href="./brand/destroy/{{ $brand->id }}"
+                                        href="./katagori/destroy/{{ $katagori->id }}"
                                         class="btn btn-outline-danger btn-sm"
                                         onclick="return confirm('Apakah Anda Yakin Menghapus Data?');"
-                                        >Hapus Brand</a
+                                        >Hapus Katagori</a
                                     >
                                 </form>
                             </td>
@@ -68,15 +68,15 @@
                 </table>
             </div>
         </div>
-        @endrole @role('pimpinan')
+        @endrole @role('anggota')
         <div class="col-md-12">
             <div class="card border-0">
                 <div class="card-body">
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th>Kode Brand</th>
-                                <th>Nama Brand</th>
+                                <th>Kode Katagori</th>
+                                <th>Nama Katagori</th>
                             </tr>
                         </thead>
                         <tbody>

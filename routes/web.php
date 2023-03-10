@@ -13,56 +13,44 @@
 
 Route::get('/', function () {
     return view('welcome');
-
 });
 
 Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/katagori', 'KatagoriController@index')->name('katagori');
+Route::get('katagori/edit/{katagori}', 'KatagoriController@edit')->name('katagori.edit');
+Route::post('/katagori/store', 'KatagoriController@store')->name('katagori.store');
+Route::patch('katagori/update/{katagori}', 'KatagoriController@update')->name('katagori.update');
+Route::get('/katagori/destroy/{katagori}', 'KatagoriController@destroy')->name('katagori.destroy');
 
-Route::group(['prefix'=>'kategori'], function(){
-    route::get('/','Kategori\CategoryController@index')->name('kategori');
-    route::get('/edit/{category}' ,'Kategori\CategoryController@edit')->name('kategori.edit');
-    route::patch('/update/{category}','Kategori\CategoryController@update')->name('kategori.update');
-    route::post('/store','Kategori\CategoryController@store')->name('kategori.store');
-    route::get('{category}','Kategori\CategoryController@destroy')->name('kategori.destroy');
-});
+Route::get('/permintaan', 'PermintaanController@index')->name('permintaan');
 
-Route::group(['prefix' => 'brand'], function () {
-    route::get('/', 'Brand\BrandController@index')->name('brand');
-    route::get('/edit/{brand}', 'Brand\BrandController@edit')->name('brand.edit');
-    route::post('/store','Brand\BrandController@store')->name('brand.store');
-    route::patch('/update/{brand}','Brand\BrandController@update')->name('brand.update');
-    route::get('{brand}','Brand\BrandController@destroy')->name('brand.destroy');
-});
+Route::get('/satuan', 'SatuanController@index')->name('satuan');
+Route::post('/satuan/store', 'SatuanController@store')->name('satuan.store');
+Route::get('/satuan/edit/{satuan}', 'SatuanController@edit')->name('satuan.edit');
+Route::patch('/satuan/update/{satuan}', 'SatuanController@update')->name('satuan.update');
+Route::get('/satuan/destroy/{satuan}', 'SatuanController@destroy')->name('satuan.destroy');
 
+Route::get('/barang', 'BarangController@index')->name('barang');
+Route::post('/store/{katagori}', 'BarangController@store')->name('barang.store');
+Route::get('/barang/tampilan', 'BarangController@tampilan')->name('barang.tampilan');
+Route::get('/request/{katagori}', 'RequestBarangController@edit')->name('barang.request');
+Route::get('/barang/create/{katagoris}', 'BarangController@create')->name('barang.create');
+route::post('store/permintaan/{barang}', 'RequestBarangController@store')->name('barang.store.permintaan');
 
-Route::group(['prefix' => 'Satuan'], function () {
-    route::get('/', 'Uom\UomController@index')->name('satuan');
-    route::get('/edit/{satuan}', 'Uom\UomController@edit')->name('uom.edit');
-    route::post('/store','Uom\UomController@store')->name('uom.store');
-    route::patch('/update/{satuan}','Uom\UomController@update')->name('satuan.update');
-    route::get('{satuan}','Uom\UomController@destroy')->name('satuan.destroy');
-});
+Route::get('/in', 'Transaksi\InController@index')->name('transaksi.in');
+Route::get('/out', 'Transaksi\OutController@index')->name('transaksi.out');
+Route::delete('in/{transaksi}', 'Transaksi\InController@destroy')->name('transaksi.destroy');
+Route::post('in/store/{transaksi}', 'Transaksi\InController@store')->name('transaksi.store');
 
-Route::group(['prefix' => 'master-barang'], function () {
-    route::get('/', 'Masterbarang\MasterbarangController@index')->name('master-barang');
-    route::get('/add', 'Masterbarang\MasterbarangController@create')->name('master-barang.add');
-    route::get('/edit', 'Masterbarang\MasterbarangController@edit')->name('master-barang.edit');
-    route::get('/request/{category}', 'Masterbarang\RequestbarangController@edit')->name('master-barang.request');
-    route::get('/show/{category}', 'Masterbarang\MasterbarangController@show')->name('master-barang.show');
-    route::post('/store/{category}', 'Masterbarang\MasterbarangController@store')->name('master-barang.store');
-    route::post('store/permintaan/{barang}', 'Masterbarang\RequestbarangController@store')->name('master-barang.store.permintaan');
-});
+Route::get('/brand', 'BrandController@index')->name('brand');
+Route::get('/brand/edit/{brand}', 'BrandController@edit')->name('brand.edit');
+Route::post('/brand/store', 'BrandController@store')->name('brand.store');
+Route::patch('/brand/update/{brand}', 'BrandController@update')->name('brand.update');
+Route::get('/brand/destroy/{brand}', 'BrandController@destroy')->name('brand.destroy');
 
-Route::group(['prefix' => 'transaksi'], function () {
-    route::get('/in', 'Transaksi\InController@index')->name('transaksi.in');
-    route::get('/out', 'Transaksi\OutController@index')->name('transaksi.out');
-    route::patch('/update/{permintaan}','Transaksi\InController@update')->name('transaksi.update');
-    route::get('{permintaan}','Transaksi\InController@destroy')->name('transaksi.destroy');
-    route::post('/store/{permintaan}', 'Transaksi\InController@store')->name('transaksi.store');
-});
-Route::group(['prefix' => 'rak'], function () {
-    route::get('/barang/{category}', 'Rak\RakController@index')->name('rak.barang');
-});
+Route::get('/barang/{katagori}', 'RakController@index')->name('rak.barang');
+
+Auth::routes();
+

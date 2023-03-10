@@ -4,7 +4,7 @@
         <ol class="breadcrumb bg-transparent d-flex align-items-center">
             <li class="breadcrumb-item" aria-current="page">Master Data</li>
             <li class="breadcrumb-item active" aria-current="page">
-                Edit Brand
+                Edit Satuan
             </li>
         </ol>
     </nav>
@@ -13,22 +13,22 @@
             <div class="card border-0">
                 <div class="card-body">
                     <form
-                        action="{{route('brand.update', $brand->id)}}"
+                        action="{{route('satuan.update', $satuan->id)}}"
                         method="post"
                     >
                         @csrf @method('PATCH')
                         <div class="form-group">
-                            <label for="nama">Nama Kategori</label>
+                            <label for="nama">Nama Satuan</label>
                             <input
                                 type="text"
                                 name="nama"
                                 id="nama"
-                                value="{{old('nama', $brand->nama)}}"
+                                value="{{old('nama', $satuan->nama)}}"
                                 class="form-control"
                             />
                         </div>
                         <button class="btn btn-outline-warning btn-sm">
-                            Perbarui Brand
+                            Perbarui Satuan
                         </button>
                     </form>
                 </div>
@@ -40,14 +40,14 @@
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th>Kode Brand</th>
-                                <th>Nama Brand</th>
+                                <th>Kode Satuan</th>
+                                <th>Nama Satuan</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>{{$brand->no_reg}}</td>
-                                <td>{{$brand->nama}}</td>
+                                <td>{{$satuan->no_reg}}</td>
+                                <td>{{$satuan->nama}}</td>
                             </tr>
                         </tbody>
                     </table>
